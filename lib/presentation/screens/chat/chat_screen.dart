@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:yes_no_app/presentation/widgets/chat/her_message_bubble.dart';
+import 'package:yes_no_app/presentation/widgets/chat/my_message_bubble.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
@@ -7,15 +9,15 @@ class ChatScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.all(4.0),
+        leading: const Padding(
+          padding: EdgeInsets.all(4.0),
           child: CircleAvatar(
             backgroundImage: NetworkImage(
               'https://images2.fanpop.com/image/photos/13700000/-Young-Princess-avril-lavigne-13727592-1000-1535.jpg',
             ),
           ),
         ),
-        title: Text('Mi amor ♥'),
+        title: const Text('Mi amor ♥'),
       ),
       body: _ChatView(),
     );
@@ -32,11 +34,15 @@ class _ChatView extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
+                itemCount: 100,
                 itemBuilder: (context, index) {
-                  return Text('Indice: $index');
+                  return (index % 2 == 0)
+                      ? const HerMessageBubble()
+                      : const MyMessageBubble();
                 },
               ),
             ),
+
             Text('Mundo'),
           ],
         ),
