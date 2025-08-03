@@ -25,8 +25,6 @@ class HerMessageBubble extends StatelessWidget {
         _ImageBubble(),
 
         const SizedBox(height: 10),
-
-        // Todo: imagen
       ],
     );
   }
@@ -44,6 +42,16 @@ class _ImageBubble extends StatelessWidget {
         width: size.width * 0.7,
         height: 150,
         fit: BoxFit.cover,
+        loadingBuilder: (context, child, loadingProgress) {
+          if (loadingProgress == null) return child;
+
+          return Container(
+            width: size.width * 0.7,
+            height: 150,
+            padding: const EdgeInsets.symmetric(horizontal: 19, vertical: 5),
+            child: const Text('Mi amor está enviando una imagen'),
+          );
+        },
       ),
     );
   }
